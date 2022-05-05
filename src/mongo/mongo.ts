@@ -2,10 +2,12 @@ import mongoose from "mongoose";
 import { NewsEntry } from "./entrySchema.js";
 
 interface INewsEntry {
-  title: string,
-  time: string,
-  text?: string[],
-  url: string
+  galnet_id: string;
+  title: string;
+  date: string;
+  text: string[];
+  url: string;
+  image: string;
 }
 
 export class DbOperations {
@@ -21,8 +23,8 @@ export class DbOperations {
       });
   }
 
-  async checkEntryExist(entry: INewsEntry): Promise<boolean> {
-    const existingEntry = await NewsEntry.exists(entry);
+  async checkEntryExist(id: string): Promise<boolean> {
+    const existingEntry = await NewsEntry.exists({ galnet_id: id });
 
     if (existingEntry !== null) {
       return true;
@@ -35,6 +37,8 @@ export class DbOperations {
     try {
       await NewsEntry.create(entry);
     } catch (error) {
+      console.log(error);
+
       return false;
     }
     return true;

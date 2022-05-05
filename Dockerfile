@@ -1,8 +1,6 @@
-FROM node
+FROM node:alpine
 WORKDIR /usr/src/app
 USER root
-
-RUN apt-get update && apt-get install -y chromium
 
 COPY . .
 RUN npm install

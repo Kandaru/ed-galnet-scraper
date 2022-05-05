@@ -2,10 +2,12 @@ import fetch from 'node-fetch';
 import moment from 'moment';
 
 interface INewsArticle {
+  galnet_id: string;
   title: string;
-  time: string;
+  date: string;
   text: string[];
   url: string;
+  image: string;
 }
 
 export class DiscordWebhook {
@@ -27,10 +29,13 @@ export class DiscordWebhook {
             title: article.title,
             description: article.text.join('\n'),
             url: article.url,
+            image: {
+              url: article.image
+            },
             footer: {
               text: 'Сделано мной на коленке для халявных новостей'
             },
-            timestamp: moment(article.time, 'YYYY-MMM-DD').format(),
+            timestamp: moment(article.date, 'DD MMM YYYY').format(),
             color: 15760133
           }
         ]
