@@ -1,24 +1,30 @@
 import mongoose from 'mongoose';
 
 const NewsEntrySchema = new mongoose.Schema({
+  galnet_id: {
+    required: true,
+    type: String,
+    unique: true
+  },
   title: {
     required: true,
     type: String
   },
-  time: {
+  date: {
     required: true,
     type: String
   },
   text: [
     {
-      required: true,
       type: String
     }
   ],
   url: {
     required: true,
     type: String,
-    unique: true
+  },
+  image: {
+    type: String
   }
 });
 
