@@ -1,6 +1,5 @@
 import moment from 'moment';
 import {
-  browser as browserConfig,
   mongo as mongoConfig,
   webhook as discordWebhookConfig
 } from './config.js';
