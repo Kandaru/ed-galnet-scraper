@@ -26,6 +26,6 @@ const NewsEntrySchema = new mongoose.Schema({
   image: {
     type: String
   }
-});
+}, { timestamps: true });
 
 export const NewsEntry = mongoose.model('NewsEntry', NewsEntrySchema, 'News');
