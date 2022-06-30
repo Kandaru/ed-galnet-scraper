@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Query } from "mongoose";
 import { NewsEntry } from "./entrySchema.js";
 
 interface INewsEntry {
@@ -35,7 +35,7 @@ export class DbOperations {
 
   async addEntry(entry: INewsEntry): Promise<boolean> {
     try {
-      await NewsEntry.create(entry);
+      await NewsEntry.findOneAndUpdate({ url: entry.url }, entry, { upsert: true });
     } catch (error) {
       console.log(error);
 
